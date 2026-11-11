@@ -1,0 +1,862 @@
+<!-- 모바일 좌우 패딩 16 -->
+<script>
+if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
+  var s=document.createElement('style');
+  s.textContent='body{margin:0}@media(max-width:700px){.contents_div{padding:0 16px}}@media(max-width:576px){.contents_div br{display:inline!important}}';
+  document.head.appendChild(s);
+}
+</script>
+<script>
+(function(){
+  try{
+    if(!document.querySelector('meta[name="viewport"]')){
+      var m=document.createElement('meta');
+      m.setAttribute('name','viewport');
+      m.setAttribute('content','width=device-width, initial-scale=1');
+      (document.head||document.getElementsByTagName('head')[0]||document.documentElement).appendChild(m);
+    }
+  }catch(e){}
+})();
+</script>
+
+<div class="contents_div">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');font-weight:100;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');font-weight:900;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');font-weight:100;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:'Paperozi';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');font-weight:900;font-display:swap}
+
+
+/* ===== 래퍼 · 변수 ===== */
+.contents_div .gg-wrap{
+  max-width:800px; margin:0 auto; container-type:inline-size;
+  /* Title */
+  --fs-h2:clamp(20px, min(23px + (100cqi - 388px) * 0.02185, 22px + (100cqi - 343px) * 0.02223, 20px + (100cqi - 318px) * 0.08), 32px); --fs-foot:31px; --fs-h3:21px;
+  /* Body */
+  --fs-body:17px; --fs-lead:16px; --fs-info:16px; --fs-cta:16px; --fs-arrow:17px;
+  --fs-nav:16px; --fs-kicker:15px; --fs-num:14px; --fs-tagcap:13.5px;
+  --fs-label:13px; --fw-label:700; --fs-check:11px; --fs-caption:11px; --fs-hash:12.5px;
+  /* 간격 */
+  --gut:clamp(22px, 6.25%, 50px);
+  --band:clamp(40px, calc(7.9% + 6.8px), 70px);
+  --card-py:30px; --card-px:28px;
+  --kick:32px; --lb-h:24px; --lb-px:11px;
+  --img-ratio:62.5%;
+  --rad:18px; --rad-s:12px; --ic:44px; --ic-svg:24px; --nav-h:70px; 
+  /* 컬러 — 히어로 이미지 기준, 채도 낮춤 */
+  --gg-main:#28721d;      /* 타이틀 */
+  --gg-dk:#2b4b24;        /* 어두운 섹션 */
+  --gg-mid:#a5c197;       /* 중간 명도 섹션 */
+  --gg-mid-ink:#22351e;   /* 중간 섹션 글자 */
+  --gg-deep:#3c5e35;      /* 리드 */
+  --gg-dark:#222b1f;      /* 내비 · 키커 · 하단 띠 */
+  --gg-title-dk:#2f3a2c;  /* 인트로 · 마무리 타이틀 */
+  --gg-neon:#3cf52a;      /* 히어로 네온 — 말풍선 · 내비 현재 위치에만 */
+  --gg-pale:#d4e5a6;      /* 하이라이트 */
+  --gg-gray:#fbfbfb;      /* 밝은 그레이 — 인트로 · 푸터 */
+  --gg-bg1:#f0f6e6;       /* 연한 세이지 */
+  --gg-bg2:#e0ecd4;       /* 세이지 */
+  --gg-qa:#f0f1ee;        /* 인트로 박스 — #fbfbfb 계열 */
+  --gg-text:#3b4436;
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:var(--fs-body); line-height:1.6; letter-spacing:-0.02em;
+  color:var(--gg-text); word-break:keep-all; background:var(--gg-gray);
+}
+.contents_div .gg-wrap, .contents_div .gg-wrap *,
+.contents_div .gg-wrap *::before, .contents_div .gg-wrap *::after{ box-sizing:border-box; }
+.contents_div .gg-wrap :where(h1,h2,h3,p,ul,ol,li,dl,dt,dd,figure,table,address){ margin:0; padding:0; }
+.contents_div .gg-wrap :where(ul,ol){ list-style:none; }
+.contents_div .gg-wrap :where(img){ max-width:100%; display:block; border:0; }
+.contents_div .gg-wrap :where(address){ font-style:normal; }
+.contents_div .gg-wrap :where(a){ color:inherit; text-decoration:none; }
+.contents_div .gg-wrap :where(h1,h2,h3){ font-family:'Paperozi','Pretendard',sans-serif; word-break:keep-all; }
+
+.contents_div h1.gg-sr{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* 조건부 줄바꿈 */
+.contents_div .gg-br::before{ content:'\A'; white-space:pre; }
+.contents_div .gg-br--mo,
+.contents_div .gg-br--mo-wide,
+.contents_div .gg-br--m420{ display:none; }
+
+/* ===== 섹션 공통 ===== */
+.contents_div .gg-sec{ width:100%; padding:var(--band) var(--gut); background:var(--gg-bg1); }
+.contents_div .gg-sec--intro{ background:linear-gradient(180deg, var(--gg-gray) 0%, var(--gg-bg1) 55%, var(--gg-bg2) 100%); }   /* 밝음 */
+.contents_div .gg-sec--light{ background:var(--gg-bg1); }      /* 밝음 */
+.contents_div .gg-sec--dark{ background:var(--gg-dk); color:#fff; }   /* 어두움 */
+.contents_div .gg-sec--mid{ background:var(--gg-mid); }       /* 중간 */
+/* 매력포인트 섹션 배경 — 개별 지정 */
+.contents_div #gg-sec3{ background:#f0f6e6; }   /* 매력포인트1 */
+.contents_div #gg-sec4{ background:#a5c197; }   /* 매력포인트2 */
+.contents_div #gg-sec5{ background:#2b4b24; }   /* 매력포인트3 */
+
+.contents_div .gg-head{ text-align:center; }
+.contents_div .gg-kicker{
+  display:inline-flex; align-items:center; gap:8px; height:var(--kick); padding:0 16px;
+  font-size:var(--fs-kicker); font-weight:700; letter-spacing:.01em; line-height:1.2;
+  color:#eef0e6; background:var(--gg-dark); border-radius:999px;
+}
+.contents_div .gg-kicker b{
+  display:flex; align-items:center; justify-content:center;
+  width:calc(var(--kick) - 10px); height:calc(var(--kick) - 10px); margin-right:-10px;
+  border-radius:50%; background:var(--gg-neon); color:var(--gg-dark); font-size:var(--fs-num); font-weight:800; line-height:1;
+}
+.contents_div .gg-h2{
+  margin-top:16px; font-size:var(--fs-h2); font-weight:800; line-height:1.35;
+  letter-spacing:-0.01em; color:var(--gg-main);
+}
+.contents_div .gg-sec--dark .gg-h2{ color:#fff; }
+.contents_div .gg-sec--mid .gg-h2{ color:var(--gg-mid-ink); }
+.contents_div .gg-hl{ font-style:normal; }
+.contents_div .gg-sec--dark .gg-hl{ color:var(--gg-neon); }
+.contents_div .gg-sec--intro .gg-h2,
+.contents_div #gg-sec6 .gg-h2{ color:var(--gg-title-dk); }
+.contents_div .gg-mark{
+  font-style:normal; padding:1px 2px; color:var(--gg-dark); background:var(--gg-pale);
+  -webkit-box-decoration-break:clone; box-decoration-break:clone;
+}
+.contents_div .gg-lead,
+.contents_div .gg-qa p,
+.contents_div .gg-village > p,
+.contents_div .gg-group p{ text-wrap:balance; }
+.contents_div .gg-lead{
+  margin-top:14px; font-size:var(--fs-lead); font-weight:500; line-height:1.6; color:var(--gg-deep);
+}
+.contents_div .gg-sec--dark .gg-lead{ color:#e8eee0; }
+.contents_div .gg-sec--mid .gg-lead{ color:#2b3d26; }
+/* 어두운 섹션 안 요소 */
+.contents_div .gg-sec--dark .gg-kicker{ color:var(--gg-dark); background:#eef0e6; }
+.contents_div .gg-sec--dark .gg-kicker b{ color:var(--gg-neon); background:var(--gg-dark); }
+.contents_div .gg-sec--dark .gg-ok{ background:rgba(255,255,255,.22); }
+.contents_div .gg-sec--dark .gg-mark{ color:#fff; background:rgba(212,229,166,.28); }
+
+/* 사진 */
+.contents_div .gg-fig{ position:relative; width:100%; overflow:hidden; background:#eee; border-radius:var(--rad); }
+.contents_div .gg-fig::before{ content:''; display:block; padding-top:var(--img-ratio); }
+.contents_div .gg-fig img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+}
+.contents_div .gg-fig--main{ margin-top:32px; }
+
+.contents_div .gg-src{
+  position:absolute; right:10px; bottom:10px; z-index:2; padding:3px 8px;
+  font-size:var(--fs-caption); font-weight:400; line-height:1.4; color:#fff;
+  background:rgba(0,0,0,.5); border-radius:4px; pointer-events:none;
+}
+
+/* 체크 원 · 아이콘 */
+.contents_div .gg-ok{
+  flex:0 0 auto; display:inline-flex; width:var(--lb-h); height:var(--lb-h); border-radius:50%;
+  font-size:var(--fs-check); background:var(--gg-main);
+}
+.contents_div .gg-ok::before{
+  content:''; width:100%; height:100%;
+  background-repeat:no-repeat; background-position:center; background-size:60%;
+}
+
+/* ===== 히어로 ===== */
+.contents_div .gg-hero{ position:relative; width:100%; overflow:hidden; background:#eee; }
+.contents_div .gg-hero::before{ content:''; display:block; padding-top:57.5%; }
+.contents_div .gg-hero img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+}
+
+/* ===== 앵커 내비 ===== */
+.contents_div .gg-nav{ padding:0 var(--gut); background:var(--gg-dark); }
+.contents_div .gg-nav ul{ display:grid; grid-template-columns:repeat(5, 1fr); }
+.contents_div .gg-nav li{ position:relative; }
+.contents_div .gg-nav li + li::before{
+  content:''; position:absolute; left:0; top:50%; width:1px; height:14px; margin-top:-7px;
+  background:rgba(238,240,230,.25);
+}
+.contents_div .gg-nav-btn{
+  display:flex; align-items:center; justify-content:center; width:100%; height:var(--nav-h); padding:0 6px;
+  font-family:inherit; font-size:var(--fs-nav); font-weight:700; line-height:1.4; letter-spacing:-0.03em;
+  text-align:center; word-break:keep-all; color:#c9cfc0; background:none; border:0; border-radius:0;
+  cursor:pointer; outline:0; -webkit-tap-highlight-color:transparent; transition:color .2s;
+}
+.contents_div .gg-nav-btn:active{ color:#fff; }
+.contents_div .gg-nav-btn.is-on{ color:var(--gg-neon); }
+
+/* ===== 1. 인트로 ===== */
+.contents_div .gg-bubble{
+  position:relative; display:inline-block; margin-top:26px; padding:12px 22px;
+  font-size:var(--fs-lead); font-weight:700; line-height:1.5; color:var(--gg-dark);
+  background:var(--gg-neon); border-radius:14px;
+}
+.contents_div .gg-bubble::after{
+  content:''; position:absolute; left:50%; bottom:-8px; width:18px; height:18px; margin-left:-9px;
+  background:var(--gg-neon); transform:rotate(45deg);
+}
+.contents_div .gg-intro-fig{ max-width:620px; margin:26px auto 0; border-radius:15px; }
+.contents_div .gg-intro-fig::before{ padding-top:35%; }   /* 620×217 */
+.contents_div .gg-intro-lead{ margin-top:28px; }
+.contents_div .gg-qa{
+  margin-top:36px; padding:var(--card-py) var(--card-px); text-align:center;
+  background:var(--gg-qa); border-radius:var(--rad);
+  box-shadow:0 0 0 1px rgba(104,212,92,.45), 0 0 18px rgba(104,212,92,.28), 0 0 40px rgba(104,212,92,.14);
+}
+.contents_div .gg-qa-h{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:var(--fs-h3); font-weight:700; line-height:1.45; color:var(--gg-main);
+}
+.contents_div .gg-qa p{ margin-top:10px; font-size:var(--fs-body); line-height:1.6; color:var(--gg-text); }
+
+/* ===== 2. 이색 김장 여행지 ===== */
+.contents_div .gg-village{ margin-top:34px; padding-top:28px; text-align:center; border-top:2px solid var(--gg-main); }
+.contents_div .gg-village-h{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:var(--fs-h3); font-weight:700; line-height:1.45; color:var(--gg-main);
+}
+.contents_div .gg-village > p{ margin-top:10px; font-size:var(--fs-body); line-height:1.6; color:var(--gg-text); }
+.contents_div .gg-village address{ margin-top:26px; }
+.contents_div .gg-rows{ display:grid; gap:10px; max-width:600px; margin:0 auto; text-align:left; }
+.contents_div .gg-row{
+  display:flex; align-items:stretch; overflow:hidden;
+  border:1.5px solid var(--gg-main); border-radius:var(--rad-s); background:#fff;
+}
+.contents_div .gg-row dt{
+  flex:0 0 150px; display:flex; align-items:center; justify-content:center; padding:12px 10px;
+  font-size:var(--fs-info); font-weight:700; line-height:1.5; color:#fff; background:var(--gg-main);
+}
+.contents_div .gg-row dd{
+  flex:1 1 auto; display:flex; align-items:center; padding:12px 20px;
+  font-size:var(--fs-info); font-weight:600; line-height:1.5; color:var(--gg-dark);
+}
+.contents_div .gg-row dd a{ text-decoration:none; }
+
+/* ===== 3. 매력포인트 1 ===== */
+.contents_div .gg-kimchi{ max-width:600px; margin:32px auto 0; }
+.contents_div .gg-kimchi-pics{
+  display:grid; position:relative; grid-template-columns:1fr 1fr; margin:0 -30px; overflow:hidden; border-radius:var(--rad);
+}
+.contents_div .gg-kimchi-pics .gg-fig{ border-radius:0; }
+.contents_div .gg-kimchi-pics .gg-fig::before{ padding-top:calc(75% - 22.5px); }   /* 좌우만 30px씩 확장, 높이 유지 */
+.contents_div .gg-kimchi-pics .gg-fig + .gg-fig{ border-left:1px solid #fff; }
+.contents_div .gg-info{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+.contents_div .gg-info-item{
+  display:flex; flex-direction:column; overflow:hidden;
+  background:#fff; border-radius:var(--rad); box-shadow:0 6px 18px rgba(58,86,52,.08);
+}
+.contents_div .gg-info dt{
+  padding:12px var(--card-px); text-align:center;
+  font-size:var(--fs-info); font-weight:700; line-height:1.5; color:#fff; background:var(--gg-main);
+}
+.contents_div .gg-info dd{
+  flex:1 1 auto; display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:calc(var(--card-py) * .67) var(--card-px);
+  font-size:var(--fs-h3); font-weight:800; line-height:1.4; color:var(--gg-main);
+}
+.contents_div .gg-info .gg-card-sub{ display:inline; margin:0 0 0 6px; }
+.contents_div .gg-cards{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:600px; margin:0 auto;
+}
+.contents_div .gg-card{
+  display:flex; flex-direction:column; overflow:hidden; text-align:center;
+  background:#fff; border-radius:var(--rad); box-shadow:0 6px 18px rgba(58,86,52,.08);
+}
+.contents_div .gg-card dt{
+  padding:12px var(--card-px);
+  font-size:var(--fs-info); font-weight:700; line-height:1.5; color:#fff; background:var(--gg-main);
+}
+.contents_div .gg-card dd{
+  flex:1 1 auto; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:calc(var(--card-py) * .67) var(--card-px);
+  font-size:var(--fs-h3); font-weight:800; line-height:1.4; color:var(--gg-main); word-break:keep-all;
+}
+.contents_div .gg-card-sub{ display:block; margin-top:2px; font-size:var(--fs-info); font-weight:600; color:var(--gg-text); }
+
+/* ===== 4. 매력포인트 2 ===== */
+.contents_div .gg-steps{ margin-top:36px; }
+.contents_div .gg-step{
+  display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:28px 0;   /* 세로 점선까지 28 = 가로 점선까지 28 */
+}
+.contents_div .gg-step{ position:relative; }
+.contents_div .gg-step::after{
+  content:''; position:absolute; left:50%; top:0; bottom:0; margin-left:-1px;
+  border-left:2px dashed rgba(255,255,255,.75); pointer-events:none;
+}
+.contents_div .gg-step + .gg-step{ border-top:2px dashed rgba(255,255,255,.75); }
+.contents_div .gg-step:first-child{ padding-top:0; }
+.contents_div .gg-step:last-child{ padding-bottom:0; }
+.contents_div .gg-step--rev .gg-step-media{ order:2; }
+.contents_div .gg-step-h{
+  display:flex; align-items:center; gap:8px;
+  font-size:var(--fs-h3); font-weight:700; line-height:1.45; color:var(--gg-mid-ink);
+}
+.contents_div .gg-num{
+  flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+  width:var(--kick); height:var(--kick); border-radius:50%;
+  font-family:'Pretendard',sans-serif; font-size:var(--fs-num); font-weight:800; line-height:1;
+  color:var(--gg-neon); background:var(--gg-dark);
+}
+.contents_div .gg-step-p{ margin-top:12px; font-size:var(--fs-body); line-height:1.6; color:#2b3d26; text-wrap:pretty; }
+.contents_div .gg-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+.contents_div .gg-chips li{
+  padding:4px 11px; font-size:14px; font-weight:500; line-height:1.5; color:var(--gg-mid-ink);
+  background:rgba(255,255,255,.5); border-radius:999px;
+}
+
+/* ===== 5. 매력포인트 3 ===== */
+.contents_div .gg-group{
+  margin-top:28px; text-align:center;
+}
+.contents_div .gg-group p{ font-size:var(--fs-body); line-height:1.6; color:var(--gg-text); }
+.contents_div .gg-fac{ margin-top:40px; text-align:center; }
+.contents_div .gg-fac-h{
+  display:flex; align-items:center; gap:16px; max-width:660px; margin:0 auto;
+  font-size:var(--fs-h3); font-weight:700; line-height:1.45; color:var(--gg-main);
+}
+.contents_div .gg-fac-h::before,
+.contents_div .gg-fac-h::after{ content:''; flex:1 1 0; border-top:2px dashed rgba(40,114,29,.4); }
+.contents_div .gg-sec--dark .gg-fac-h::before,
+.contents_div .gg-sec--dark .gg-fac-h::after{ border-top-color:rgba(255,255,255,.3); }
+/* 시설 */
+.contents_div .gg-facs{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px; max-width:660px; margin:22px auto 0;
+}
+.contents_div .gg-facs li{
+  display:flex; align-items:center; gap:12px; padding:8px 22px 8px 8px;
+  font-size:var(--fs-info); font-weight:700; line-height:1.4; color:var(--gg-main); white-space:nowrap;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:999px;
+}
+
+/* 숙박 슬라이드 */
+.contents_div .gg-slider{
+  position:relative; width:100%; overflow:hidden; background:#eee; border-radius:var(--rad);
+  touch-action:pan-y;
+}
+.contents_div .gg-slide-track{ display:flex; transition:transform .6s ease; will-change:transform; }
+.contents_div .gg-slide{ position:relative; flex:0 0 100%; }
+.contents_div .gg-slide::before{ content:''; display:block; padding-top:var(--img-ratio); }
+.contents_div .gg-slide img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+  pointer-events:none; user-select:none;
+}
+.contents_div .gg-dots{
+  position:absolute; left:0; right:0; bottom:16px; display:flex; justify-content:center; gap:8px;
+}
+.contents_div .gg-dot{
+  width:9px; height:9px; padding:0; border:0; border-radius:999px; cursor:pointer;
+  background:rgba(255,255,255,.6); transition:width .3s, background .3s;
+}
+.contents_div .gg-dot.is-on{ width:26px; background:var(--gg-neon); }
+.contents_div .gg-arrow{
+  position:absolute; top:50%; z-index:2; width:46px; height:46px; margin-top:-23px; padding:0;
+  border:1px solid rgba(255,255,255,.35); border-radius:50%; cursor:pointer;
+  background-color:rgba(34,43,31,.55); background-repeat:no-repeat; background-position:center; background-size:18px;
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); transition:background-color .2s, border-color .2s;
+}
+.contents_div .gg-arrow--prev{ left:16px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 5l-7 7 7 7'/%3E%3C/svg%3E"); }
+.contents_div .gg-arrow--next{ right:16px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic{
+  flex:0 0 auto; display:block; width:var(--ic); height:var(--ic); border-radius:50%;
+  background-color:var(--gg-pale); background-repeat:no-repeat; background-position:center; background-size:var(--ic-svg);
+}
+
+/* ===== 어두운 섹션(2 · 5) 안 요소 ===== */
+.contents_div .gg-sec--dark .gg-village{ border-top-color:rgba(255,255,255,.35); }
+.contents_div .gg-sec--dark .gg-village-h,
+.contents_div .gg-sec--dark .gg-fac-h{ color:#fff; }
+.contents_div .gg-sec--dark .gg-village > p,
+.contents_div .gg-sec--dark .gg-group p{ color:rgba(255,255,255,.88); }
+.contents_div .gg-sec--dark .gg-row{ border-color:var(--gg-mid); background:var(--gg-gray); }
+.contents_div .gg-sec--dark .gg-row dt{ color:var(--gg-mid-ink); background:var(--gg-mid); }
+.contents_div .gg-sec--dark .gg-facs li{ color:#fff; }
+
+/* 매력포인트2 사진 흰색 테두리 */
+.contents_div .gg-step-media{
+  box-shadow:0 0 0 2px rgba(255,255,255,.55);   /* 점선 구분선과 같은 두께, 조금 더 연하게 */
+}
+
+/* ===== 6. 마무리 ===== */
+.contents_div .gg-recs{ display:grid; gap:12px; max-width:620px; margin:32px auto 0; }
+.contents_div .gg-recs li{
+  display:flex; align-items:center; gap:12px; padding:18px var(--card-px);
+  font-size:var(--fs-body); font-weight:600; line-height:1.6; color:var(--gg-dark);
+  background:var(--gg-bg2); border-radius:var(--rad-s);
+}
+.contents_div .gg-strip{
+  display:flex; justify-content:center; flex-wrap:wrap; gap:12px;
+}
+.contents_div .gg-cta{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:10px 26px;
+  font-size:var(--fs-cta); font-weight:700; line-height:1.45; text-align:center;
+  color:var(--gg-dark); background:#eef0e6; border:1px solid #eef0e6; border-radius:999px;
+  transition:background .2s, color .2s;
+}
+.contents_div .gg-cta--line{ color:#fff; background:var(--gg-main); border-color:var(--gg-main); }
+.contents_div .gg-cta-arrow{ font-size:var(--fs-arrow); line-height:1; }
+
+/* ===== 푸터 ===== */
+.contents_div .gg-sec.gg-foot{ padding-top:calc(var(--band) * .786); padding-bottom:calc(var(--band) * .786); background:var(--gg-dark); }
+.contents_div .gg-tags{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:6px 12px;
+  margin-top:36px; padding-top:46px; border-top:1px solid rgba(238,240,230,.14);
+}
+.contents_div .gg-tags .gg-tags-br{ flex:0 0 100%; height:0; }
+.contents_div .gg-tags li{
+  white-space:nowrap; font-size:var(--fs-hash); font-weight:400; line-height:1.4; color:rgba(238,240,230,.6);
+}
+
+/* ===== 아이콘 (CSS data URI) ===== */
+.contents_div .gg-ic--stay{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 10.5c3-1 6-3.5 10-7 4 3.5 7 6 10 7'/%3E%3Cpath d='M5 9.5V20h14V9.5'/%3E%3Cpath d='M10 20v-5h4v5'/%3E%3Cpath d='M3 20h18'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic--futsal{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 8.2l3.3 2.4-1.3 3.9h-4l-1.3-3.9z'/%3E%3Cpath d='M12 8.2V3.5M15.3 10.6l4.4-1.5M14 14.5l2.7 3.8M10 14.5l-2.7 3.8M8.7 10.6 4.3 9.1'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic--seminar{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3.5' width='18' height='11.5' rx='1.5'/%3E%3Cpath d='M7 11l3-3 2.5 2.5L17 7'/%3E%3Cpath d='M12 15v3M8 21l4-3 4 3'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic--jokgu{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16.5' cy='5.5' r='3'/%3E%3Cpath d='M3 11h18M3 11v10M21 11v10M3 15h18'/%3E%3Cpath d='M7.5 11v4M12 11v4M16.5 11v4'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic--walk{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 21c0-4 3-5.5 5-7.5s3-4.5 1-7'/%3E%3Cpath d='M13 21c0-3 2-4.5 3.5-6s2.5-3.5 1.5-5.5'/%3E%3Cpath d='M5 9a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0M7.5 11.5V15'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic--shop{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l1.8-5h14.4L21 9'/%3E%3Cpath d='M3 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3'/%3E%3Cpath d='M5 12v8h14v-8'/%3E%3Cpath d='M10 20v-4.5h4V20'/%3E%3C/svg%3E"); }
+.contents_div .gg-ic--lawn{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322351e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 20h20'/%3E%3Cpath d='M5 20c0-4-1-6.5-3-8.5M8 20c0-5 1-8.5 3.5-10.5M12.5 20c0-4 1.5-7.5 4.5-9.5M17 20c0-3 1.5-5.5 5-7'/%3E%3C/svg%3E"); }
+.contents_div .gg-ok::before{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.2 6.3 4.8 8.8 9.8 3.4'/%3E%3C/svg%3E"); }
+
+/* ===== hover ===== */
+@media (hover:hover) and (pointer:fine){
+  .contents_div .gg-nav-btn:hover{ color:#fff; }
+  .contents_div .gg-nav-btn.is-on:hover{ color:var(--gg-neon); }
+  .contents_div .gg-arrow:hover{ background-color:var(--gg-dark); border-color:var(--gg-neon); }
+  .contents_div .gg-cta:hover{ background:var(--gg-main); border-color:var(--gg-main); color:#fff; }
+  .contents_div .gg-cta--line:hover{ color:#eef0e6; background:transparent; border-color:rgba(238,240,230,.5); }
+}
+
+/* ===== 반응형 ===== */
+/* 매력포인트2만 예외: 650 이하에서 1단 배치 */
+@media (max-width:650px){
+  .contents_div .gg-steps{ margin-top:24px; }
+  .contents_div .gg-step{ grid-template-columns:1fr; gap:16px; padding:22px 0; }
+  .contents_div .gg-step--rev .gg-step-media{ order:0; }
+  .contents_div .gg-step::after{ display:none; }
+}
+@media (max-width:600px){
+  .contents_div .gg-wrap{
+    --fs-foot:clamp(18px, calc(18px + (100vw - 375px) * 0.0857), 21px);
+    --fs-h3:clamp(16px, calc(16px + (100vw - 375px) * 0.0286), 17px);
+    --fs-body:clamp(13.5px, calc(13.5px + (100vw - 375px) * 0.0143), 14px);
+    --fs-lead:var(--fs-body); --fs-info:var(--fs-body); --fs-cta:var(--fs-body);
+    --fs-arrow:15px; --fs-nav:12px; --fs-kicker:11.5px; --fs-num:10px; --fs-tagcap:10px;
+    --fs-label:10px; --fw-label:400; --fs-check:10px; --fs-caption:10px;
+    --fs-hash:clamp(10.5px, calc(10.5px + (100vw - 375px) * 0.0143), 11px);
+    --gut:22px;
+    --card-py:22px; --card-px:17px;
+    --kick:22px; --lb-h:17px; --lb-px:7px;
+    --img-ratio:62.5%;   /* 웹과 같은 16:10 */
+    --rad:14px; --rad-s:10px; --ic:32px; --ic-svg:18px; --nav-h:56px; 
+  }
+  .contents_div .gg-br--web{ display:none; }
+  .contents_div .gg-br--mo,
+  .contents_div .gg-br--mo-wide{ display:inline; }
+
+  .contents_div .gg-kicker{ padding:0 11px; gap:6px; }
+  .contents_div .gg-kicker b{ width:16px; height:16px; margin-right:-6px; }
+  .contents_div .gg-lead{ padding:0 5%; }
+  .contents_div .gg-fig--main{ margin-top:22px; }
+
+  .contents_div .gg-nav-btn{ padding:0 2px; line-height:1.3; }
+  .contents_div .gg-nav li + li::before{ height:12px; margin-top:-6px; }
+
+  .contents_div .gg-bubble{ margin-top:18px; padding:10px 14px; border-radius:12px; }
+  .contents_div .gg-bubble::after{ width:14px; height:14px; margin-left:-7px; bottom:-6px; }
+  .contents_div .gg-intro-fig{ margin-top:18px; border-radius:12px; }
+  .contents_div .gg-intro-lead{ margin-top:22px; }
+  .contents_div .gg-qa{ margin-top:26px; box-shadow:0 0 0 1px rgba(104,212,92,.45), 0 0 12px rgba(104,212,92,.28), 0 0 26px rgba(104,212,92,.14); }
+  .contents_div .gg-qa-h,
+  .contents_div .gg-village-h{ gap:6px; }
+  .contents_div .gg-qa p{ margin-top:8px; }
+
+  .contents_div .gg-village{ margin-top:24px; padding-top:20px; }
+  .contents_div .gg-village address{ margin-top:18px; }
+  .contents_div .gg-rows{ gap:8px; }
+  .contents_div .gg-row dt{ flex-basis:84px; padding:10px 6px; }
+  .contents_div .gg-row dd{ padding:10px 12px; }
+
+  .contents_div .gg-kimchi{ margin-top:22px; }
+  .contents_div .gg-src{ right:8px; bottom:8px; padding:2px 6px; }
+  .contents_div .gg-kimchi-pics{ margin:0 -8px; }
+  .contents_div .gg-kimchi-pics .gg-fig::before{ padding-top:68.2%; }   /* 웹 800 기준 330×225와 같은 비율 */
+  .contents_div .gg-info{ gap:8px; margin-top:16px; }
+  .contents_div .gg-info dt{ padding:6px 8px; }
+  .contents_div .gg-info dd{ padding:9px 10px; line-height:1.3; }
+  .contents_div .gg-info .gg-card-sub{ display:block; margin:0; font-size:12px; line-height:1.35; }
+  .contents_div .gg-cards{ gap:8px; }
+  .contents_div .gg-card dt{ padding:9px 8px; }
+
+  .contents_div .gg-step-h{ gap:6px; }
+  .contents_div .gg-step-p{ margin-top:8px; text-wrap:balance; }
+  .contents_div .gg-chips{ gap:5px; margin-top:10px; }
+  .contents_div .gg-chips li{ padding:3px 9px; font-size:12.5px; }
+
+  .contents_div .gg-group{ margin-top:20px; }
+  .contents_div .gg-fac{ margin-top:30px; }
+  .contents_div .gg-fac-h{ gap:12px; }
+  .contents_div .gg-facs{ gap:8px; margin-top:16px; }
+  .contents_div .gg-facs li{ gap:8px; padding:5px 15px 5px 5px; }
+  .contents_div .gg-arrow{ display:none; }
+  .contents_div .gg-dots{ bottom:12px; gap:6px; }
+  .contents_div .gg-dot{ width:7px; height:7px; }
+  .contents_div .gg-dot.is-on{ width:20px; }
+
+  .contents_div .gg-recs{ gap:8px; margin-top:22px; }
+  .contents_div .gg-recs li{ gap:10px; padding:14px var(--card-px); align-items:flex-start; }
+  .contents_div .gg-recs .gg-ok{ margin-top:2px; }
+  .contents_div .gg-strip{ flex-direction:column; gap:8px; }
+  .contents_div .gg-cta{ width:100%; min-height:48px; padding:10px 16px; }
+
+  .contents_div .gg-tags{ margin-top:26px; padding-top:33px; }
+  .contents_div .gg-tags{ gap:5px 9px; }
+  .contents_div .gg-tags .gg-tags-br{ display:none; }
+}
+@media (max-width:480px){
+  .contents_div .gg-wrap{
+    --fs-nav:clamp(11.5px, calc(11.5px + (100vw - 375px) * 0.0286), 12.5px);
+    --gut:15px;
+  }
+  .contents_div .gg-lead{ padding:0; }
+  .contents_div .gg-cta{ min-height:44px; }
+}
+@media (max-width:420px){
+  .contents_div .gg-wrap{
+    --band:40px;
+    --card-py:19px; --card-px:14px;
+  }
+  .contents_div .gg-br--mo-wide{ display:none; }
+  .contents_div .gg-br--m420{ display:inline; }
+}
+</style>
+
+<article class="gg-wrap">
+  <h1 class="gg-sr">전남광주통합특별시 11월 농촌체험휴양마을 여수 갓고을마을</h1>
+
+  <!-- 히어로 -->
+  <div class="gg-hero">
+    <img src="img/히어로.webp" width="1600" height="920" fetchpriority="high" loading="eager" decoding="async" alt="가을 들판과 갓고을센터 건물을 내려다본 여수 갓고을마을 항공사진 위에 '여수 갓고을마을' 제목이 쓰인 히어로 이미지">
+  </div>
+
+  <nav class="gg-nav" aria-label="본문 바로가기">
+    <ul>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec2"><span class="gg-nav-t">김장<span class="gg-br gg-br--mo"></span> 여행지</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec3"><span class="gg-nav-t">갓김치<span class="gg-br gg-br--mo"></span> 담그기</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec4"><span class="gg-nav-t">이색<span class="gg-br gg-br--mo"></span> 체험</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec5"><span class="gg-nav-t">힐링<span class="gg-br gg-br--mo"></span> 여행지</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec6"><span class="gg-nav-t">11월<span class="gg-br gg-br--mo"></span> 추천</span></button></li>
+    </ul>
+  </nav>
+
+  <!-- 1. 인트로 -->
+  <section class="gg-sec gg-sec--intro" id="gg-sec1">
+    <div class="gg-head">
+      <p class="gg-kicker">농촌체험휴양마을</p>
+      <h2 class="gg-h2">전남광주통합특별시가 선택한<br><em class="gg-hl">11월 농촌체험휴양마을</em>은?</h2>
+      <p class="gg-bubble">돌산갓으로 갓김치도 만들고<span class="gg-br gg-br--mo"></span> 보리빵, 갓강정을 만들고 갯벌 체험까지?</p>
+      <div class="gg-fig gg-intro-fig"><img src="img/인트로.webp" width="620" height="217" alt=""></div>
+      <p class="gg-lead gg-intro-lead">전남광주통합특별시가 11월에 갈 만한 농촌체험휴양마을로 여수의 갓고을마을을 선정했어요.<br>바다가 있는 천혜의 자연경관과 함께 오감 만족 힐링 여행을 떠나볼까요?</p>
+    </div>
+    <div class="gg-qa">
+      <h3 class="gg-qa-h"><span class="gg-ok" aria-hidden="true"></span>전남광주 농촌체험휴양마을 선정이란?</h3>
+      <p>지역의 농촌 자원과 특색 있는 체험 프로그램을 알리고, 농촌 관광을 활성화하기 위해 매달 대표 마을을 선정해 소개하는 사업</p>
+    </div>
+  </section>
+
+  <!-- 2. 이색 김장 여행지 -->
+  <section class="gg-sec gg-sec--dark" id="gg-sec2">
+    <div class="gg-head">
+      <p class="gg-kicker">이색 김장 여행지</p>
+      <h2 class="gg-h2">11월에 꼭 가봐야 할<br><em class="gg-hl">이색 김장 여행지</em>가 있다?</h2>
+      <p class="gg-lead">전남광주통합특별시의 11월 농촌체험휴양마을로 선정된 여수 갓고을마을은<span class="gg-br gg-br--web"></span> 남해안의 아름다운 자연경관과 지역 특산물을 활용한<span class="gg-br gg-br--web"></span> 다채로운 체험 프로그램을 즐길 수 있는 마을이에요.</p>
+    </div>
+    <div class="gg-village">
+      <h3 class="gg-village-h"><span class="gg-ok" aria-hidden="true"></span>여수 갓고을마을</h3>
+      <p>여수 돌산에 자리한 갓고을마을은 어촌과 농촌이 어우러진 아름다운 풍광을 자랑하며, 돌산 갓김치로도 잘 알려져 있어요.</p>
+      <address>
+        <dl class="gg-rows">
+          <div class="gg-row">
+            <dt>위치</dt>
+            <dd>여수시 돌산읍 향일암로 913 갓고을센터</dd>
+          </div>
+          <div class="gg-row">
+            <dt>예약·문의</dt>
+            <dd><a href="tel:061-644-6100">061)644-6100</a></dd>
+          </div>
+          <div class="gg-row">
+            <dt>누리집</dt>
+            <dd><a href="http://www.gatgoeul.com/index.php" target="_blank" rel="noopener" aria-label="여수 갓고을마을 누리집 바로가기(새 창)">www.gatgoeul.com</a></dd>
+          </div>
+        </dl>
+      </address>
+    </div>
+  </section>
+
+  <!-- 3. 매력포인트 1 -->
+  <section class="gg-sec gg-sec--light" id="gg-sec3">
+    <div class="gg-head">
+      <p class="gg-kicker">갓고을마을 매력포인트<b>1</b></p>
+      <h2 class="gg-h2">밭에서 식탁까지,<span class="gg-br gg-br--mo"></span> <em class="gg-hl">맛있는 갓김치 담그기</em></h2>
+      <p class="gg-lead">해풍을 맞고 자라 특유의 알싸한 맛과 향이 살아 있는<span class="gg-br gg-br--web"></span> 돌산갓으로 직접 양념을 버무리는 <em class="gg-mark">특별한 김장 체험</em>을!</p>
+    </div>
+    <div class="gg-kimchi">
+      <div class="gg-kimchi-pics">
+        <div class="gg-fig"><img src="img/갓김치담그기1.webp" alt=""></div>
+        <div class="gg-fig"><img src="img/갓김치담그기2.webp" alt=""></div>
+        <span class="gg-src">출처: 갓고을마을</span>
+      </div>
+      <dl class="gg-info">
+        <div class="gg-info-item gg-info-item--time">
+          <dt>체험 소요 시간</dt>
+          <dd><span class="gg-info-v">1시간</span></dd>
+        </div>
+        <div class="gg-info-item gg-info-item--fee">
+          <dt>참가비</dt>
+          <dd><span class="gg-info-v">별도 문의<span class="gg-card-sub">(갓김치 제공)</span></span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 4. 매력포인트 2 -->
+  <section class="gg-sec gg-sec--mid" id="gg-sec4">
+    <div class="gg-head">
+      <p class="gg-kicker">갓고을마을 매력포인트<b>2</b></p>
+      <h2 class="gg-h2">아이부터 어른까지<span class="gg-br gg-br--mo"></span> <em class="gg-hl">이색 체험이 가득</em></h2>
+      <p class="gg-lead">보리빵 만들기, 갓강정 만들기, 갓 천연 비누 등<span class="gg-br gg-br--web"></span> 남녀노소 누구나 즐길 수 있는 체험 프로그램이 가득해요.</p>
+    </div>
+    <div class="gg-steps">
+      <div class="gg-step">
+        <div class="gg-step-media gg-fig"><img src="img/농산물수확체험.webp" alt=""><span class="gg-src">출처: 갓고을마을</span></div>
+        <div class="gg-step-txt">
+          <h3 class="gg-step-h"><span class="gg-num" aria-hidden="true">1</span>농산물 수확 체험</h3>
+          <ul class="gg-chips">
+            <li>감자 수확 체험</li>
+            <li>옥수수 수확 체험</li>
+            <li>고구마 수확 체험</li>
+            <li>표고버섯 따기 체험</li>
+            <li>방울토마토 수확 체험</li>
+          </ul>
+        </div>
+      </div>
+      <div class="gg-step gg-step--rev">
+        <div class="gg-step-media gg-fig"><img src="img/실내체험.webp" alt=""><span class="gg-src">출처: 갓고을마을</span></div>
+        <div class="gg-step-txt">
+          <h3 class="gg-step-h"><span class="gg-num" aria-hidden="true">2</span>실내 체험</h3>
+          <ul class="gg-chips">
+            <li>보리빵 만들기 체험</li>
+            <li>단호박 초콜릿 만들기 체험</li>
+            <li>오란다 만들기 체험 키트</li>
+            <li>인절미 만들기 체험</li>
+            <li>천연 비누 만들기</li>
+            <li>표고 탕수육 만들기</li>
+            <li>강정 만들기</li>
+          </ul>
+        </div>
+      </div>
+      <div class="gg-step">
+        <div class="gg-step-media gg-fig"><img src="img/갯벌체험.webp" alt=""><span class="gg-src">출처: 갓고을마을</span></div>
+        <div class="gg-step-txt">
+          <h3 class="gg-step-h"><span class="gg-num" aria-hidden="true">3</span>갯벌 체험</h3>
+          <p class="gg-step-p">갯벌 생물을 직접 관찰하고 채취하며<span class="gg-br gg-br--mo"></span> 살아 있는 자연과 환경의 소중함을 느껴보세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 매력포인트 3 -->
+  <section class="gg-sec gg-sec--dark" id="gg-sec5">
+    <div class="gg-head">
+      <p class="gg-kicker">갓고을마을 매력포인트<b>3</b></p>
+      <h2 class="gg-h2"><em class="gg-hl">머물고 싶은 힐링 여행지</em></h2>
+      <p class="gg-lead">가족 단위부터 단체 여행객까지 고즈넉한 한옥 숙박부터 펜션까지<span class="gg-br gg-br--web"></span> 갓고을에 머물며 힐링해보세요.</p>
+    </div>
+    <div class="gg-slider gg-fig--main" aria-roledescription="carousel" aria-label="갓고을마을 숙박시설 사진">
+      <div class="gg-slide-track">
+        <div class="gg-slide"><img src="img/숙박1.webp" alt=""></div>
+        <div class="gg-slide"><img src="img/숙박2.webp" alt=""></div>
+        <div class="gg-slide"><img src="img/숙박3.webp" alt=""></div>
+        <div class="gg-slide"><img src="img/숙박4.webp" alt=""></div>
+      </div>
+      <button type="button" class="gg-arrow gg-arrow--prev" aria-label="이전 사진"></button>
+      <button type="button" class="gg-arrow gg-arrow--next" aria-label="다음 사진"></button>
+      <span class="gg-src">출처: 갓고을마을</span>
+      <div class="gg-dots">
+        <button type="button" class="gg-dot is-on" aria-label="1번째 사진"></button>
+        <button type="button" class="gg-dot" aria-label="2번째 사진"></button>
+        <button type="button" class="gg-dot" aria-label="3번째 사진"></button>
+        <button type="button" class="gg-dot" aria-label="4번째 사진"></button>
+      </div>
+    </div>
+    <div class="gg-group">
+      <p>또 <em class="gg-mark">100여 명을 수용할 수 있는 체험관</em>이 있어 어린이집, 유치원, 학교나 회사가 단체 방문하거나 체험하기에도 좋아요.</p>
+    </div>
+    <div class="gg-fac">
+      <h3 class="gg-fac-h">시설</h3>
+      <ul class="gg-facs">
+        <li><span class="gg-ic gg-ic--stay" aria-hidden="true"></span><span class="gg-fac-t">갓고을 숙박</span></li>
+        <li><span class="gg-ic gg-ic--futsal" aria-hidden="true"></span><span class="gg-fac-t">풋살장</span></li>
+        <li><span class="gg-ic gg-ic--seminar" aria-hidden="true"></span><span class="gg-fac-t">세미나실</span></li>
+        <li><span class="gg-ic gg-ic--jokgu" aria-hidden="true"></span><span class="gg-fac-t">족구장</span></li>
+        <li><span class="gg-ic gg-ic--walk" aria-hidden="true"></span><span class="gg-fac-t">산책로</span></li>
+        <li><span class="gg-ic gg-ic--shop" aria-hidden="true"></span><span class="gg-fac-t">돌산갓김치 판매장</span></li>
+        <li><span class="gg-ic gg-ic--lawn" aria-hidden="true"></span><span class="gg-fac-t">잔디광장 등</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 마무리 -->
+  <section class="gg-sec gg-sec--light" id="gg-sec6">
+    <div class="gg-head">
+      <p class="gg-kicker">11월 여행 추천</p>
+      <h2 class="gg-h2">11월엔 <em class="gg-hl">여수 갓고을마을</em>로<span class="gg-br gg-br--mo"></span> 떠나보세요!</h2>
+    </div>
+    <ul class="gg-recs">
+      <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">주말을 이용해 색다른 가족 여행을<span class="gg-br gg-br--mo"></span> 계획 중인 분</span></li>
+      <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">아이들에게 자연과 전통 식문화의 가치를 알려주고 싶은 보호자</span></li>
+      <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">여수의 진짜 향토 문화를 깊이 있게 느끼고 싶은 여행자</span></li>
+    </ul>
+  </section>
+
+  <footer class="gg-sec gg-foot">
+    <div class="gg-strip">
+      <a class="gg-cta" href="tel:061-644-6100">갓고을마을 예약·문의 061)644-6100</a>
+      <a class="gg-cta gg-cta--line" href="http://www.gatgoeul.com/index.php" target="_blank" rel="noopener">갓고을마을 누리집 바로가기<span class="gg-cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+    <ul class="gg-tags" aria-label="관련 태그">
+      <li>#여수갓고을마을</li>
+      <li>#돌산갓김치</li>
+      <li>#농촌체험휴양마을</li>
+      <li>#전남광주통합특별시</li>
+      <li>#김장체험</li>
+      <li>#여수여행</li>
+      <li class="gg-tags-br" aria-hidden="true"></li>
+      <li>#갯벌체험</li>
+      <li>#가족여행</li>
+      <li>#농촌관광</li>
+      <li>#11월여행지</li>
+    </ul>
+  </footer>
+</article>
+
+<script>
+(function(){
+  var root = document.querySelector('.contents_div');
+  if(!root) return;
+  var btns = root.querySelectorAll('.gg-nav-btn');
+
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var t = root.querySelector('#' + btn.getAttribute('data-go'));
+      if(!t) return;
+      var y = t.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - 10;
+      window.scrollTo({ top:y, behavior:'smooth' });
+    });
+  });
+
+  if(!('IntersectionObserver' in window)) return;
+  var map = {};
+  btns.forEach(function(b){ map[b.getAttribute('data-go')] = b; });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      btns.forEach(function(b){ b.classList.remove('is-on'); });
+      var b = map[en.target.id];
+      if(b) b.classList.add('is-on');
+    });
+  }, { rootMargin:'-45% 0px -50% 0px' });
+  Object.keys(map).forEach(function(id){
+    var s = root.querySelector('#' + id);
+    if(s) io.observe(s);
+  });
+})();
+</script>
+<script>
+(function(){
+  var root = document.querySelector('.contents_div');
+  if(!root) return;
+  root.querySelectorAll('.gg-slider').forEach(function(sl){
+    var track = sl.querySelector('.gg-slide-track');
+    var dots = sl.querySelectorAll('.gg-dot');
+    var slides = track.querySelectorAll('.gg-slide');
+    var n = slides.length;
+    if(n < 2) return;
+    track.appendChild(slides[0].cloneNode(true));   /* 첫 슬라이드 복제본 */
+    var idx = 0, timer = null, busy = false;
+
+    function setPos(i, anim, off){
+      track.style.transition = anim ? '' : 'none';
+      track.style.transform = 'translateX(calc(' + (-i * 100) + '% + ' + (off || 0) + 'px))';
+    }
+    function mark(){
+      var r = idx % n;
+      dots.forEach(function(d, k){ d.classList.toggle('is-on', k === r); });
+    }
+    function go(i){
+      if(busy || i === idx) return;
+      idx = i; busy = true;
+      setPos(idx, true); mark();
+    }
+    track.addEventListener('transitionend', function(e){
+      if(e.target !== track) return;
+      busy = false;
+      if(idx >= n){ idx = 0; setPos(0, false); track.offsetHeight; }
+    });
+    function next(){ go(idx + 1); }
+    function prev(){
+      if(busy) return;
+      if(idx === 0){ idx = n; setPos(n, false); track.offsetHeight; }
+      go(idx - 1);
+    }
+    function play(){ stop(); timer = setInterval(next, 3500); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+
+    var pb = sl.querySelector('.gg-arrow--prev'), nb = sl.querySelector('.gg-arrow--next');
+    if(pb) pb.addEventListener('click', function(){ prev(); play(); });
+    if(nb) nb.addEventListener('click', function(){ next(); play(); });
+
+    dots.forEach(function(d, k){
+      d.addEventListener('click', function(){ busy = false; go(k); play(); });
+    });
+
+    var sx = 0, sy = 0, dx = 0, lock = null;
+    sl.addEventListener('touchstart', function(e){
+      var t = e.touches[0];
+      sx = t.clientX; sy = t.clientY; dx = 0; lock = null; stop();
+    }, { passive:true });
+    sl.addEventListener('touchmove', function(e){
+      var t = e.touches[0];
+      dx = t.clientX - sx;
+      var dy = t.clientY - sy;
+      if(lock === null){
+        if(Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        lock = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+      }
+      if(lock === 'x' && !busy){
+        e.preventDefault();
+        setPos(idx, false, dx);
+      }
+    }, { passive:false });
+    sl.addEventListener('touchend', function(){
+      if(lock === 'x' && !busy){
+        if(dx < -40) next();
+        else if(dx > 40) prev();
+        else setPos(idx, true);
+      }
+      lock = null; play();
+    }, { passive:true });
+
+    play();
+  });
+})();
+</script>
+</div>
