@@ -172,15 +172,12 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 }
 
 /* ===== 히어로 ===== */
-.contents_div .gg-hero{ position:relative; width:100%; overflow:hidden; background:#eee; }
-.contents_div .gg-hero::before{ content:''; display:block; padding-top:57.5%; }
-.contents_div .gg-hero img{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
-}
+.contents_div .gg-hero{ width:100%; overflow:hidden; background:#eee; }
+.contents_div .gg-hero img{ width:100%; height:auto; }   /* 원본 1600×964 비율 그대로 */
 
 /* ===== 앵커 내비 ===== */
-.contents_div .gg-nav{ padding:0 var(--gut); background:var(--gg-dark); }
-.contents_div .gg-nav ul{ display:grid; grid-template-columns:repeat(5, 1fr); }
+.contents_div .gg-nav{ padding:0 var(--gut); background:#213619; }
+.contents_div .gg-nav ul{ display:grid; grid-template-columns:repeat(4, 1fr); }
 .contents_div .gg-nav li{ position:relative; }
 .contents_div .gg-nav li + li::before{
   content:''; position:absolute; left:0; top:50%; width:1px; height:14px; margin-top:-7px;
@@ -189,7 +186,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-nav-btn{
   display:flex; align-items:center; justify-content:center; width:100%; height:var(--nav-h); padding:0 6px;
   font-family:inherit; font-size:var(--fs-nav); font-weight:700; line-height:1.4; letter-spacing:-0.03em;
-  text-align:center; word-break:keep-all; color:#c9cfc0; background:none; border:0; border-radius:0;
+  text-align:center; word-break:keep-all; color:#f1f4ec; background:none; border:0; border-radius:0;
   cursor:pointer; outline:0; -webkit-tap-highlight-color:transparent; transition:color .2s;
 }
 .contents_div .gg-nav-btn:active{ color:#fff; }
@@ -206,7 +203,8 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   background:var(--gg-neon); transform:rotate(45deg);
 }
 .contents_div .gg-intro-fig{ max-width:620px; margin:26px auto 0; border-radius:15px; }
-.contents_div .gg-intro-fig::before{ padding-top:35%; }   /* 620×217 */
+.contents_div .gg-intro-fig::before{ display:none; }   /* 높이 auto — 원본 비율 그대로 */
+.contents_div .gg-intro-fig img{ position:static; height:auto; }
 .contents_div .gg-intro-lead{ margin-top:28px; }
 .contents_div .gg-qa{
   margin-top:36px; padding:var(--card-py) var(--card-px); text-align:center;
@@ -468,7 +466,8 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-lead{ padding:0 5%; }
   .contents_div .gg-fig--main{ margin-top:22px; }
 
-  .contents_div .gg-nav-btn{ padding:0 2px; line-height:1.3; }
+  .contents_div .gg-nav-btn{ padding:0 2px; line-height:1.3; white-space:nowrap; }
+  .contents_div .gg-nav-web{ display:none; }
   .contents_div .gg-nav li + li::before{ height:12px; margin-top:-6px; }
 
   .contents_div .gg-bubble{ margin-top:18px; padding:10px 14px; border-radius:12px; }
@@ -546,16 +545,15 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 
   <!-- 히어로 -->
   <div class="gg-hero">
-    <img src="img/히어로.webp" width="1600" height="920" fetchpriority="high" loading="eager" decoding="async" alt="가을 들판과 갓고을센터 건물을 내려다본 여수 갓고을마을 항공사진 위에 '여수 갓고을마을' 제목이 쓰인 히어로 이미지">
+    <img src="img/히어로.webp" width="1600" height="964" fetchpriority="high" loading="eager" decoding="async" alt="가을 들판과 갓고을센터 건물을 내려다본 여수 갓고을마을 항공사진 위에 '여수 갓고을마을' 제목이 쓰인 히어로 이미지">
   </div>
 
   <nav class="gg-nav" aria-label="본문 바로가기">
     <ul>
-      <li><button type="button" class="gg-nav-btn" data-go="gg-sec2"><span class="gg-nav-t">김장<span class="gg-br gg-br--mo"></span> 여행지</span></button></li>
-      <li><button type="button" class="gg-nav-btn" data-go="gg-sec3"><span class="gg-nav-t">갓김치<span class="gg-br gg-br--mo"></span> 담그기</span></button></li>
-      <li><button type="button" class="gg-nav-btn" data-go="gg-sec4"><span class="gg-nav-t">이색<span class="gg-br gg-br--mo"></span> 체험</span></button></li>
-      <li><button type="button" class="gg-nav-btn" data-go="gg-sec5"><span class="gg-nav-t">힐링<span class="gg-br gg-br--mo"></span> 여행지</span></button></li>
-      <li><button type="button" class="gg-nav-btn" data-go="gg-sec6"><span class="gg-nav-t">11월<span class="gg-br gg-br--mo"></span> 추천</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec2"><span class="gg-nav-t">김장 여행지</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec3"><span class="gg-nav-t"><span class="gg-nav-web">갓</span>김치 담그기</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec4"><span class="gg-nav-t">이색 체험</span></button></li>
+      <li><button type="button" class="gg-nav-btn" data-go="gg-sec5"><span class="gg-nav-t">힐링 여행지</span></button></li>
     </ul>
   </nav>
 
@@ -565,7 +563,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <p class="gg-kicker">농촌체험휴양마을</p>
       <h2 class="gg-h2">전남광주통합특별시가 선택한<br><em class="gg-hl">11월 농촌체험휴양마을</em>은?</h2>
       <p class="gg-bubble">돌산갓으로 갓김치도 만들고<span class="gg-br gg-br--mo"></span> 보리빵, 갓강정을 만들고 갯벌 체험까지?</p>
-      <div class="gg-fig gg-intro-fig"><img src="img/인트로.webp" width="620" height="217" alt=""></div>
+      <div class="gg-fig gg-intro-fig"><img src="img/인트로.webp" width="1600" height="964" alt=""></div>
       <p class="gg-lead gg-intro-lead">전남광주통합특별시가 11월에 갈 만한 농촌체험휴양마을로 여수의 갓고을마을을 선정했어요.<br>바다가 있는 천혜의 자연경관과 함께 오감 만족 힐링 여행을 떠나볼까요?</p>
     </div>
     <div class="gg-qa">
