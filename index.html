@@ -393,16 +393,18 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   font-size:var(--fs-body); font-weight:600; line-height:1.6; color:var(--gg-dark);
   background:var(--gg-bg2); border-radius:var(--rad-s);
 }
+.contents_div .gg-outro{ margin-top:28px; text-align:center; font-weight:600; }
 .contents_div .gg-strip{
-  display:flex; justify-content:center; flex-wrap:wrap; gap:12px;
+  display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; max-width:660px; margin:0 auto;
 }
 .contents_div .gg-cta{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:10px 26px;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:10px 18px;
   font-size:var(--fs-cta); font-weight:700; line-height:1.45; text-align:center;
   color:var(--gg-dark); background:#eef0e6; border:1px solid #eef0e6; border-radius:999px;
-  transition:background .2s, color .2s;
+  transition:box-shadow .25s;
 }
 .contents_div .gg-cta--line{ color:#fff; background:var(--gg-main); border-color:var(--gg-main); }
+.contents_div .gg-nowrap{ white-space:nowrap; }
 .contents_div .gg-cta-arrow{ font-size:var(--fs-arrow); line-height:1; }
 
 /* ===== 푸터 ===== */
@@ -431,8 +433,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-nav-btn:hover{ color:#fff; }
   .contents_div .gg-nav-btn.is-on:hover{ color:var(--gg-neon); }
   .contents_div .gg-arrow:hover{ background-color:var(--gg-dark); border-color:var(--gg-neon); }
-  .contents_div .gg-cta:hover{ background:var(--gg-main); border-color:var(--gg-main); color:#fff; }
-  .contents_div .gg-cta--line:hover{ color:#eef0e6; background:transparent; border-color:rgba(238,240,230,.5); }
+  .contents_div .gg-cta:hover{ box-shadow:0 0 0 1px rgba(60,245,42,.55), 0 0 14px rgba(60,245,42,.45), 0 0 32px rgba(60,245,42,.25); }
 }
 
 /* ===== 반응형 ===== */
@@ -497,7 +498,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-card dt{ padding:9px 8px; }
 
   .contents_div .gg-step-h{ gap:6px; }
-  .contents_div .gg-step-p{ margin-top:8px; text-wrap:balance; }
+  .contents_div .gg-step-p{ margin-top:8px; }
   .contents_div .gg-chips{ gap:5px; margin-top:10px; }
   .contents_div .gg-chips li{ padding:3px 9px; font-size:12.5px; }
 
@@ -512,9 +513,10 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-dot.is-on{ width:20px; }
 
   .contents_div .gg-recs{ gap:8px; margin-top:22px; }
+  .contents_div .gg-outro{ margin-top:20px; }
   .contents_div .gg-recs li{ gap:10px; padding:14px var(--card-px); align-items:flex-start; }
   .contents_div .gg-recs .gg-ok{ margin-top:2px; }
-  .contents_div .gg-strip{ flex-direction:column; gap:8px; }
+  .contents_div .gg-strip{ grid-template-columns:1fr; gap:8px; }
   .contents_div .gg-cta{ width:100%; min-height:48px; padding:10px 16px; }
 
   .contents_div .gg-tags{ margin-top:26px; padding-top:33px; }
@@ -667,7 +669,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
         <div class="gg-step-media gg-fig"><img src="img/갯벌체험.webp" alt=""><span class="gg-src">출처: 갓고을마을</span></div>
         <div class="gg-step-txt">
           <h3 class="gg-step-h"><span class="gg-num" aria-hidden="true">3</span>갯벌 체험</h3>
-          <p class="gg-step-p">갯벌 생물을 직접 관찰하고 채취하며<span class="gg-br gg-br--mo"></span> 살아 있는 자연과 환경의 소중함을 느껴보세요.</p>
+          <p class="gg-step-p">갯벌 생물을 직접 관찰하고 채취하며 살아 있는 자연과 환경의 소중함을 느껴보세요.</p>
         </div>
       </div>
     </div>
@@ -698,7 +700,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       </div>
     </div>
     <div class="gg-group">
-      <p>또 <em class="gg-mark">100여 명을 수용할 수 있는 체험관</em>이 있어 어린이집, 유치원, 학교나 회사가 단체 방문하거나 체험하기에도 좋아요.</p>
+      <p><em class="gg-mark">100여 명을 수용할 수 있는 체험관</em>이 있어<span class="gg-br gg-br--mo"></span> 어린이집, 유치원, 학교나 회사가<span class="gg-br gg-br--mo"></span> 단체 방문하거나 체험하기에도 좋아요.</p>
     </div>
     <div class="gg-fac">
       <h3 class="gg-fac-h">시설</h3>
@@ -718,18 +720,19 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   <section class="gg-sec gg-sec--light" id="gg-sec6">
     <div class="gg-head">
       <p class="gg-kicker">11월 여행 추천</p>
-      <h2 class="gg-h2">11월엔 <em class="gg-hl">여수 갓고을마을</em>로<span class="gg-br gg-br--mo"></span> 떠나보세요!</h2>
+      <h2 class="gg-h2"><em class="gg-hl">이런 분들께 추천!</em></h2>
     </div>
     <ul class="gg-recs">
-      <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">주말을 이용해 색다른 가족 여행을<span class="gg-br gg-br--mo"></span> 계획 중인 분</span></li>
+      <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">주말을 이용해 색다른 가족 여행을 계획 중인 분</span></li>
       <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">아이들에게 자연과 전통 식문화의 가치를 알려주고 싶은 보호자</span></li>
       <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">여수의 진짜 향토 문화를 깊이 있게 느끼고 싶은 여행자</span></li>
     </ul>
+    <p class="gg-lead gg-outro">11월엔 여수 갓고을마을로 떠나보세요.</p>
   </section>
 
   <footer class="gg-sec gg-foot">
     <div class="gg-strip">
-      <a class="gg-cta" href="tel:061-644-6100">갓고을마을 예약·문의 061)644-6100</a>
+      <a class="gg-cta" href="tel:061-644-6100"><span>갓고을마을 예약·문의 <span class="gg-nowrap">061)644-6100</span></span></a>
       <a class="gg-cta gg-cta--line" href="http://www.gatgoeul.com/index.php" target="_blank" rel="noopener">갓고을마을 누리집 바로가기<span class="gg-cta-arrow" aria-hidden="true">→</span></a>
     </div>
     <ul class="gg-tags" aria-label="관련 태그">
