@@ -410,7 +410,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-sec--dark .gg-fac-h::after{ border-top-color:rgba(255,255,255,.3); }
 /* 시설 */
 .contents_div .gg-facs{
-  display:flex; flex-wrap:wrap; justify-content:center; column-gap:10px; max-width:660px; margin:12px auto 0;
+  display:flex; flex-wrap:wrap; justify-content:center; column-gap:10px; max-width:660px; margin:28px auto 0;   /* 부대시설 아래 +16 */
 }
 .contents_div .gg-facs li{
   display:flex; align-items:center; gap:12px; margin-top:10px; padding:8px 22px 8px 8px;
@@ -460,6 +460,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-sec--dark .gg-row{ border-color:var(--gg-mid); background:var(--gg-gray); }
 .contents_div .gg-sec--dark .gg-row dt{ color:var(--gg-mid-ink); background:var(--gg-mid); }
 .contents_div .gg-sec--dark .gg-facs li{ color:#fff; }
+.contents_div .gg-sec--dark .gg-fac-h .gg-hl{ color:var(--gg-pale); }   /* 부대시설 — 네온보다 차분한 연두 */
 /* 시설 줄바꿈 — 웹 4·3 / 540 이하 2·3·2 */
 .contents_div .gg-facs .gg-facs-br{ display:none; flex:0 0 100%; height:0; margin:0; padding:0; border:0; background:none; }
 .contents_div .gg-facs .gg-facs-br--web{ display:block; }
@@ -623,7 +624,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-fac-h{ gap:12px; }
   .contents_div .gg-fac-h::before,
   .contents_div .gg-fac-h::after{ border-top-width:1px; }
-  .contents_div .gg-facs{ column-gap:8px; margin-top:8px; }
+  .contents_div .gg-facs{ column-gap:8px; margin-top:18px; }   /* 부대시설 아래 +10 */
   .contents_div .gg-facs li{ gap:8px; margin-top:8px; padding:5px 15px 5px 5px; }
   .contents_div .gg-facs .gg-ic{ width:var(--ic); height:var(--ic); }
   .contents_div .gg-arrow{ display:none; }
@@ -873,7 +874,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <p><em class="gg-mark">100여 명을 수용할 수 있는 체험관</em>이 있어<span class="gg-br gg-br--mo"></span> 어린이집, 유치원, 학교나 회사가<span class="gg-br gg-br--mo"></span> 단체 방문하거나 체험하기에도 좋아요.</p>
     </div>
     <div class="gg-fac">
-      <h3 class="gg-fac-h">시설</h3>
+      <h3 class="gg-fac-h"><span>갓고을마을 <em class="gg-hl">부대시설</em></span></h3>
       <ul class="gg-facs">
         <li><span class="gg-ic gg-ic--stay" aria-hidden="true"></span><span class="gg-fac-t">갓고을 숙박</span></li>
         <li><span class="gg-ic gg-ic--futsal" aria-hidden="true"></span><span class="gg-fac-t">풋살장</span></li>
