@@ -63,7 +63,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   --gg-mid:#a5c197;       /* 중간 명도 섹션 */
   --gg-mid-ink:#22351e;   /* 중간 섹션 글자 */
   --gg-deep:#3c5e35;      /* 리드 */
-  --gg-dark:#222b1f;      /* 내비 · 키커 · 하단 띠 */
+  --gg-dark:#222b1f;      /* 내비 · 키커 */
   --gg-title-dk:#2f3a2c;  /* 인트로 · 마무리 타이틀 */
   --gg-neon:#3cf52a;      /* 히어로 네온 — 말풍선 · 내비 현재 위치에만 */
   --gg-pale:#d4e5a6;      /* 하이라이트 */
@@ -171,9 +171,56 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   background-repeat:no-repeat; background-position:center; background-size:60%;
 }
 
-/* ===== 히어로 ===== */
-.contents_div .gg-hero{ width:100%; overflow:hidden; background:#eee; }
-.contents_div .gg-hero img{ width:100%; height:auto; }   /* 원본 1600×964 비율 그대로 */
+/* ===== 히어로 (모션, prefix: gtg-) ===== */
+.contents_div .gtg-hero{position:relative;width:100%;max-width:800px;margin:0 auto;overflow:hidden;background:#1d2a12;aspect-ratio:1600/964;isolation:isolate}
+.contents_div .gtg-hero__bg,
+.contents_div .gtg-hero__lab,
+.contents_div .gtg-hero__canvas{position:absolute;inset:0;width:100%;height:100%;display:block;margin:0;padding:0;border:0;max-width:none}
+.contents_div .gtg-hero__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* 배경 */
+.contents_div .gtg-hero__bg{object-fit:cover;transform:scale(1.1);filter:brightness(.6);transform-origin:50% 60%}
+.contents_div .gtg-hero.is-play .gtg-hero__bg{animation:gtgBgIn 1.8s cubic-bezier(.2,.7,.2,1) forwards,gtgBgDrift 16s ease-in-out 1.8s infinite alternate}
+/* 상단 작은 글씨 3개 — 이미지에서 해당 영역만 잘라 사용 */
+.contents_div .gtg-hero__lab--l{-webkit-clip-path:inset(0 80% 87% 0);clip-path:inset(0 80% 87% 0)}
+.contents_div .gtg-hero__lab--c{-webkit-clip-path:inset(0 45% 87% 45%);clip-path:inset(0 45% 87% 45%)}
+.contents_div .gtg-hero__lab--r{-webkit-clip-path:inset(0 0 87% 77%);clip-path:inset(0 0 87% 77%)}
+.contents_div .gtg-hero__lab--l,
+.contents_div .gtg-hero__lab--c,
+.contents_div .gtg-hero__lab--r{opacity:0}
+.contents_div .gtg-hero.is-play .gtg-hero__lab--l{animation:gtgLabIn 1.1s ease-out .5s forwards}
+.contents_div .gtg-hero.is-play .gtg-hero__lab--c{animation:gtgLabIn 1.1s ease-out .7s forwards}
+.contents_div .gtg-hero.is-play .gtg-hero__lab--r{animation:gtgLabIn 1.1s ease-out .9s forwards}
+/* 메인 텍스트 캔버스: 픽셀 해상 전환은 JS, 둥실거림은 CSS */
+.contents_div .gtg-hero__canvas{pointer-events:none}
+.contents_div .gtg-hero.is-play .gtg-hero__canvas{animation:gtgBob 2.6s steps(1,end) infinite}
+.contents_div .gtg-hero.is-paused .gtg-hero__canvas,
+.contents_div .gtg-hero.is-paused .gtg-hero__bg{animation-play-state:paused}
+@keyframes gtgBgIn{
+  0%{transform:scale(1.1);filter:brightness(.6)}
+  100%{transform:scale(1);filter:brightness(1)}
+}
+@keyframes gtgBgDrift{
+  0%{transform:scale(1)}
+  100%{transform:scale(1.05)}
+}
+@keyframes gtgBob{ /* 정수 px로만 이동해 글자가 뭉개지지 않게 */
+  0%,100%{transform:translate3d(0,0,0)}
+  12.5%,87.5%{transform:translate3d(0,-1px,0)}
+  25%,75%{transform:translate3d(0,-2px,0)}
+  37.5%,62.5%{transform:translate3d(0,-3px,0)}
+  50%{transform:translate3d(0,-4px,0)}
+}
+@keyframes gtgLabIn{
+  0%{opacity:0;transform:translateY(-6px)}
+  100%{opacity:1;transform:none}
+}
+
+/* ===== 스크롤 등장 (내비 아래 콘텐츠) — JS가 켤 때만 숨김 ===== */
+.contents_div .gg-wrap.is-rv .gg-rv{
+  opacity:0; transform:translate3d(0,28px,0);
+  transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); transition-delay:var(--rv-d,0s);
+}
+.contents_div .gg-wrap.is-rv .gg-rv.is-in{ opacity:1; transform:none; }
 
 /* ===== 앵커 내비 ===== */
 .contents_div .gg-nav{ padding:0 var(--gut); background:#213619; }
@@ -202,9 +249,10 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   content:''; position:absolute; left:50%; bottom:-8px; width:18px; height:18px; margin-left:-9px;
   background:var(--gg-neon); transform:rotate(45deg);
 }
-.contents_div .gg-intro-fig{ max-width:620px; margin:26px auto 0; border-radius:15px; }
-.contents_div .gg-intro-fig::before{ display:none; }   /* 높이 auto — 원본 비율 그대로 */
-.contents_div .gg-intro-fig img{ position:static; height:auto; }
+.contents_div .gg-intro-fig{ max-width:620px; margin:26px auto 0; border-radius:15px; background:none; }   /* 투명 PNG — 회색 바탕 없음 */
+.contents_div .gg-intro-fig::before{ padding-top:35%; }   /* 620×217 비율 고정 */
+.contents_div .gg-intro-fig{ overflow:visible; }   /* 그림자 잘림 방지 */
+.contents_div .gg-intro-fig img{ filter:drop-shadow(0 4px 10px rgba(34,43,31,.16)); }   /* 투명 PNG 모양 따라 그림자 */
 .contents_div .gg-intro-lead{ margin-top:28px; }
 .contents_div .gg-qa{
   margin-top:36px; padding:var(--card-py) var(--card-px); text-align:center;
@@ -281,7 +329,41 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 }
 .contents_div .gg-card-sub{ display:block; margin-top:2px; font-size:var(--fs-info); font-weight:600; color:var(--gg-text); }
 
+/* 매력포인트1 키커 — 아래 간판 키커와 겹치지 않게 연두 */
+.contents_div #gg-sec3 .gg-kicker{ color:var(--gg-mid-ink); background:var(--gg-pale); box-shadow:inset 0 0 0 1px rgba(40,114,29,.3); }
+.contents_div #gg-sec3 .gg-kicker b{ color:#fff; background:var(--gg-main); }
+
 /* ===== 4. 매력포인트 2 ===== */
+/* 키커 — 매달린 네온 간판 */
+.contents_div #gg-sec4 .gg-kicker{
+  position:relative; height:auto; margin-top:0; padding:14px 30px; gap:12px;
+  font-size:21px; color:#f4fff0; background:var(--gg-dark); border-radius:var(--rad-s);
+  text-shadow:0 0 4px rgba(60,245,42,.9), 0 0 10px rgba(60,245,42,.5);
+  box-shadow:inset 0 0 0 4px var(--gg-dark), inset 0 0 0 5px rgba(60,245,42,.6),
+             0 0 0 1px rgba(60,245,42,.25), 0 0 16px rgba(60,245,42,.35), 0 0 34px rgba(60,245,42,.15);
+}
+.contents_div #gg-sec4 .gg-kicker::before,
+.contents_div #gg-sec4 .gg-kicker::after{
+  content:''; position:absolute; bottom:100%; width:2px; height:calc(clamp(40px, 7.9cqi + 6.8px, 70px) - 5px); background:var(--gg-dark);   /* 섹션 상하 여백(--band) − 5 */
+}
+.contents_div #gg-sec4 .gg-kicker::before{ left:20%; }
+.contents_div #gg-sec4 .gg-kicker::after{ right:20%; }
+.contents_div #gg-sec4 .gg-kicker b{
+  width:30px; height:30px; margin-right:0; font-size:16px; text-shadow:none; box-shadow:0 0 8px rgba(60,245,42,.7);
+}
+.contents_div #gg-sec4 .gg-h2{ margin-top:28px; }   /* 간판 키커 아래 +12 */
+/* 상단 전체화면 배경 */
+.contents_div .gg-sec--full{ display:grid; padding:0; overflow:hidden; isolation:isolate; }
+.contents_div .gg-sec--full > .gg-sec-bg,
+.contents_div .gg-sec--full > .gg-sec-in{ grid-area:1 / 1; min-width:0; }
+.contents_div .gg-sec--full > .gg-sec-bg{
+  position:relative; z-index:-1; align-self:start; justify-self:start;
+  display:block; width:100%; max-width:none; height:auto; margin:0;
+  pointer-events:none; user-select:none;
+  -webkit-mask-image:linear-gradient(to bottom, #000 calc(100% - 100px), transparent 100%);
+          mask-image:linear-gradient(to bottom, #000 calc(100% - 100px), transparent 100%);
+}
+.contents_div .gg-sec--full > .gg-sec-in{ padding:var(--band) var(--gut); }
 .contents_div .gg-steps{ margin-top:36px; }
 .contents_div .gg-step{
   display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:28px 0;   /* 세로 점선까지 28 = 가로 점선까지 28 */
@@ -289,9 +371,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-step{ position:relative; }
 .contents_div .gg-step::after{
   content:''; position:absolute; left:50%; top:0; bottom:0; margin-left:-1px;
-  border-left:2px dashed rgba(255,255,255,.75); pointer-events:none;
+  border-left:2px dashed rgba(255,255,255,.6); pointer-events:none;
 }
-.contents_div .gg-step + .gg-step{ border-top:2px dashed rgba(255,255,255,.75); }
+.contents_div .gg-step + .gg-step{ border-top:2px dashed rgba(255,255,255,.6); }
 .contents_div .gg-step:first-child{ padding-top:0; }
 .contents_div .gg-step:last-child{ padding-bottom:0; }
 .contents_div .gg-step--rev .gg-step-media{ order:2; }
@@ -328,10 +410,10 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-sec--dark .gg-fac-h::after{ border-top-color:rgba(255,255,255,.3); }
 /* 시설 */
 .contents_div .gg-facs{
-  display:flex; flex-wrap:wrap; justify-content:center; gap:10px; max-width:660px; margin:22px auto 0;
+  display:flex; flex-wrap:wrap; justify-content:center; column-gap:10px; max-width:660px; margin:12px auto 0;
 }
 .contents_div .gg-facs li{
-  display:flex; align-items:center; gap:12px; padding:8px 22px 8px 8px;
+  display:flex; align-items:center; gap:12px; margin-top:10px; padding:8px 22px 8px 8px;
   font-size:var(--fs-info); font-weight:700; line-height:1.4; color:var(--gg-main); white-space:nowrap;
   background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:999px;
 }
@@ -378,6 +460,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-sec--dark .gg-row{ border-color:var(--gg-mid); background:var(--gg-gray); }
 .contents_div .gg-sec--dark .gg-row dt{ color:var(--gg-mid-ink); background:var(--gg-mid); }
 .contents_div .gg-sec--dark .gg-facs li{ color:#fff; }
+/* 시설 줄바꿈 — 웹 4·3 / 540 이하 2·3·2 */
+.contents_div .gg-facs .gg-facs-br{ display:none; flex:0 0 100%; height:0; margin:0; padding:0; border:0; background:none; }
+.contents_div .gg-facs .gg-facs-br--web{ display:block; }
 
 /* 매력포인트2 사진 흰색 테두리 */
 .contents_div .gg-step-media{
@@ -406,10 +491,15 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .gg-cta-arrow{ font-size:var(--fs-arrow); line-height:1; }
 
 /* ===== 푸터 ===== */
-.contents_div .gg-sec.gg-foot{ padding-top:calc(var(--band) * .786); padding-bottom:calc(var(--band) * .786); background:var(--gg-dark); }
+/* 마무리 섹션 — 하단 여백 70 고정, 버튼 2개 포함 */
+.contents_div #gg-sec6{ padding-bottom:70px; }
+.contents_div #gg-sec6 .gg-strip{ margin-top:32px; }
+.contents_div #gg-sec6 .gg-cta{ color:var(--gg-dark); background:#fff; border-color:rgba(40,114,29,.35); }
+.contents_div #gg-sec6 .gg-cta--line{ color:#fff; background:var(--gg-main); border-color:var(--gg-main); }
+/* 푸터 — 태그만, 다크 */
+.contents_div .gg-sec.gg-foot{ padding-top:50px; padding-bottom:50px; background:var(--gg-dark); }
 .contents_div .gg-tags{
   display:flex; flex-wrap:wrap; justify-content:center; gap:6px 12px;
-  margin-top:36px; padding-top:46px; border-top:1px solid rgba(238,240,230,.14);
 }
 .contents_div .gg-tags .gg-tags-br{ flex:0 0 100%; height:0; }
 .contents_div .gg-tags li{
@@ -435,6 +525,12 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 }
 
 /* ===== 반응형 ===== */
+/* 시설 4·3 배치가 좁은 웹 폭에서도 유지되게 캡슐만 살짝 축소 (글자 크기 그대로) */
+@media (max-width:767px){
+  .contents_div .gg-facs{ column-gap:8px; }
+  .contents_div .gg-facs li{ gap:8px; padding:6px 14px 6px 6px; }
+  .contents_div .gg-facs .gg-ic{ width:36px; height:36px; }
+}
 /* 매력포인트2만 예외: 650 이하에서 1단 배치 */
 @media (max-width:650px){
   .contents_div .gg-steps{ margin-top:24px; }
@@ -473,13 +569,14 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-bubble{ margin-top:18px; padding:10px 14px; border-radius:12px; }
   .contents_div .gg-bubble::after{ width:14px; height:14px; margin-left:-7px; bottom:-6px; }
   .contents_div .gg-intro-fig{ margin-top:18px; border-radius:12px; }
+  .contents_div .gg-intro-fig img{ filter:drop-shadow(0 3px 7px rgba(34,43,31,.16)); }
   .contents_div .gg-intro-lead{ margin-top:22px; }
   .contents_div .gg-qa{ margin-top:26px; box-shadow:0 0 0 1px rgba(104,212,92,.45), 0 0 12px rgba(104,212,92,.28), 0 0 26px rgba(104,212,92,.14); }
   .contents_div .gg-qa-h,
   .contents_div .gg-village-h{ gap:6px; }
   .contents_div .gg-qa p{ margin-top:8px; }
 
-  .contents_div .gg-village{ margin-top:24px; padding-top:20px; }
+  .contents_div .gg-village{ margin-top:24px; padding-top:20px; border-top-width:1px; }
   .contents_div .gg-village address{ margin-top:18px; }
   .contents_div .gg-rows{ gap:8px; }
   .contents_div .gg-row dt{ flex-basis:84px; padding:10px 6px; }
@@ -496,6 +593,24 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-cards{ gap:8px; }
   .contents_div .gg-card dt{ padding:9px 8px; }
 
+  .contents_div #gg-sec4 .gg-kicker{ padding:10px 18px; gap:8px; font-size:15px;
+    box-shadow:inset 0 0 0 3px var(--gg-dark), inset 0 0 0 4px rgba(60,245,42,.6),
+               0 0 0 1px rgba(60,245,42,.25), 0 0 12px rgba(60,245,42,.35), 0 0 24px rgba(60,245,42,.15); }
+  .contents_div #gg-sec4 .gg-h2{ margin-top:24px; }
+  .contents_div #gg-sec4 .gg-kicker b{ width:22px; height:22px; margin-right:0; font-size:12px; }
+  .contents_div .gg-sec--full > .gg-sec-bg{ width:132%; margin-left:-16%; clip-path:inset(0 0 62.5% 0); }   /* 1.32배, 가운데 기준 · 아래 토마토·단호박은 가림 (원본 y300 아래) */
+  /* 같은 원본에서 토마토·단호박만 잘라 안쪽으로 30씩 (원본 1600×800 기준 토마토 0,400~170,620 · 단호박 1340,377~1600,634) */
+  .contents_div #gg-sec4{ position:relative; }
+  .contents_div #gg-sec4::before,
+  .contents_div #gg-sec4::after{
+    content:''; position:absolute; top:0; z-index:-1; width:132%; aspect-ratio:2 / 1; pointer-events:none;
+    background:url('img/매력포인트2배경.webp') no-repeat 0 0 / 100% 100%;
+    -webkit-mask-image:linear-gradient(to bottom, #000 calc(100% - 100px), transparent 100%);
+            mask-image:linear-gradient(to bottom, #000 calc(100% - 100px), transparent 100%);
+  }
+  .contents_div #gg-sec4::before{ left:calc(-16% + 50px); clip-path:inset(37.5% 87.5% 20% 0); }        /* 토마토 → (원본 0,300~200,640 넉넉하게) */
+  .contents_div #gg-sec4::after{ left:calc(-16% - 30px); clip-path:inset(47.125% 0 20.75% 83.75%); }     /* ← 단호박 */
+  .contents_div .gg-step + .gg-step{ border-top-width:1px; }
   .contents_div .gg-step-h{ gap:6px; }
   .contents_div .gg-step-p{ margin-top:8px; }
   .contents_div .gg-chips{ gap:5px; margin-top:10px; }
@@ -504,8 +619,11 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .gg-group{ margin-top:20px; }
   .contents_div .gg-fac{ margin-top:30px; }
   .contents_div .gg-fac-h{ gap:12px; }
-  .contents_div .gg-facs{ gap:8px; margin-top:16px; }
-  .contents_div .gg-facs li{ gap:8px; padding:5px 15px 5px 5px; }
+  .contents_div .gg-fac-h::before,
+  .contents_div .gg-fac-h::after{ border-top-width:1px; }
+  .contents_div .gg-facs{ column-gap:8px; margin-top:8px; }
+  .contents_div .gg-facs li{ gap:8px; margin-top:8px; padding:5px 15px 5px 5px; }
+  .contents_div .gg-facs .gg-ic{ width:var(--ic); height:var(--ic); }
   .contents_div .gg-arrow{ display:none; }
   .contents_div .gg-dots{ bottom:12px; gap:6px; }
   .contents_div .gg-dot{ width:7px; height:7px; }
@@ -513,14 +631,25 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 
   .contents_div .gg-recs{ gap:8px; margin-top:22px; }
   .contents_div .gg-outro{ margin-top:20px; }
+  .contents_div #gg-sec6{ padding-bottom:40px; }
+  .contents_div #gg-sec6 .gg-strip{ margin-top:24px; }
+  .contents_div .gg-sec.gg-foot{ padding-top:30px; padding-bottom:30px; }
   .contents_div .gg-recs li{ gap:10px; padding:14px var(--card-px); align-items:flex-start; }
   .contents_div .gg-recs .gg-ok{ margin-top:2px; }
+  .contents_div .gg-recs li:nth-child(2) .gg-ok{ margin-top:4.5px; }   /* 이 항목만 체크 2.5px 아래로 */
   .contents_div .gg-strip{ grid-template-columns:1fr; gap:8px; }
-  .contents_div .gg-cta{ width:100%; min-height:48px; padding:10px 16px; }
+  .contents_div .gg-cta{ width:100%; min-height:53px; padding:10px 16px; }
 
-  .contents_div .gg-tags{ margin-top:26px; padding-top:33px; }
   .contents_div .gg-tags{ gap:5px 9px; }
   .contents_div .gg-tags .gg-tags-br{ display:none; }
+}
+@media (min-width:470px) and (max-width:600px){
+  .contents_div #gg-sec4::before{ left:calc(-16% + 65px); }   /* 600~470 토마토만 15 더 안쪽 */
+}
+/* 시설 2·3·2 배치 고정 (540 → 350) */
+@media (max-width:540px){
+  .contents_div .gg-facs .gg-facs-br--web{ display:none; }
+  .contents_div .gg-facs .gg-facs-br--mo{ display:block; }
 }
 @media (max-width:480px){
   .contents_div .gg-wrap{
@@ -528,7 +657,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
     --gut:15px;
   }
   .contents_div .gg-lead{ padding:0; }
-  .contents_div .gg-cta{ min-height:44px; }
+  .contents_div .gg-cta{ min-height:49px; }
 }
 @media (max-width:420px){
   .contents_div .gg-wrap{
@@ -537,16 +666,57 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   }
   .contents_div .gg-br--mo-wide{ display:none; }
   .contents_div .gg-br--m420{ display:inline; }
+  .contents_div .gg-wrap{ --ic:28px; }
+  .contents_div .gg-facs{ column-gap:6px; }
+  .contents_div .gg-facs li{ gap:6px; padding:4px 11px 4px 4px; }   /* 350에서 3개가 한 줄에 들어가게 */
+  .contents_div #gg-sec4 .gg-kicker::before,
+  .contents_div #gg-sec4 .gg-kicker::after{ height:35px; }   /* --band 40 − 5 */
+}
+@media (max-width:350px){
+  .contents_div #gg-sec4::before{ left:calc(-16% + 35px); }   /* 350 이하 토마토 왼쪽으로 15 */
+}
+/* 350 미만: 시설 2·3·2 배치 유지 — 캡슐 전체를 화면 폭에 비례해 축소 (360 기준) */
+@media (max-width:349px){
+  .contents_div .gg-facs{ column-gap:1.667vw; }
+  .contents_div .gg-facs li{ gap:1.667vw; padding:1.111vw 3.056vw 1.111vw 1.111vw; font-size:max(10px, 3.75vw); }
+  .contents_div .gg-facs .gg-ic{ width:7.778vw; height:7.778vw; background-size:5vw; }
+}
+/* 움직임 줄이기 설정 사용자: 모션 없이 최종 화면 */
+@media (prefers-reduced-motion:reduce){
+  .contents_div .gtg-hero .gtg-hero__bg{animation:none!important;transform:none;filter:none}
+  .contents_div .gtg-hero .gtg-hero__lab--l,
+  .contents_div .gtg-hero .gtg-hero__lab--c,
+  .contents_div .gtg-hero .gtg-hero__lab--r{animation:none!important;opacity:1}
+  .contents_div .gtg-hero .gtg-hero__canvas{animation:none!important}
+  .contents_div .gg-wrap.is-rv .gg-rv{ opacity:1; transform:none; transition:none; }
 }
 </style>
+
+<!-- TEST: 확인 후 이 줄 삭제 -->
+ <div class="jngj-test-spacer" aria-hidden="true" style="height:900px;max-width:800px;margin:auto;display:grid;place-items:center;border:1px solid #cb9;background:linear-gradient(to top right,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)),linear-gradient(to top left,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)) #fffdef;font:700 16px sans-serif;color:#7E5E50"><b style="padding:10px 20px;background:#fffdef;border:1px solid #cb9;border-radius:99px">
+  테스트 영역 · 아래로 스크롤 ↓</b></div>
+<!-- TEST: 확인 후 이 줄 삭제  -->
 
 <article class="gg-wrap">
   <h1 class="gg-sr">전남광주통합특별시 11월 농촌체험휴양마을 여수 갓고을마을</h1>
 
   <!-- 히어로 -->
-  <div class="gg-hero">
-    <img src="img/히어로.webp" width="1600" height="964" fetchpriority="high" loading="eager" decoding="async" alt="가을 들판과 갓고을센터 건물을 내려다본 여수 갓고을마을 항공사진 위에 '여수 갓고을마을' 제목이 쓰인 히어로 이미지">
-  </div>
+  <section class="gtg-hero" aria-labelledby="gtg-hero-heading">
+    <h2 class="gtg-hero__sr" id="gtg-hero-heading">11월 힐링여행지, 여수 갓고을마을 농촌체험휴양마을</h2>
+    <img class="gtg-hero__bg"
+      src="img/히어로배경.webp"
+      width="1600" height="964" alt="가을 들녘에 둘러싸인 여수 갓고을마을 체험관과 판매장 전경" fetchpriority="high" loading="eager" decoding="async">
+    <img class="gtg-hero__lab gtg-hero__lab--l"
+      src="img/히어로텍스트1.webp"
+      width="1600" height="964" alt="" aria-hidden="true" fetchpriority="high" loading="eager" decoding="async">
+    <img class="gtg-hero__lab gtg-hero__lab--c"
+      src="img/히어로텍스트1.webp"
+      width="1600" height="964" alt="" aria-hidden="true" fetchpriority="high" loading="eager" decoding="async">
+    <img class="gtg-hero__lab gtg-hero__lab--r"
+      src="img/히어로텍스트1.webp"
+      width="1600" height="964" alt="" aria-hidden="true" fetchpriority="high" loading="eager" decoding="async">
+    <canvas class="gtg-hero__canvas" aria-hidden="true"></canvas>
+  </section>
 
   <nav class="gg-nav" aria-label="본문 바로가기">
     <ul>
@@ -628,7 +798,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   </section>
 
   <!-- 4. 매력포인트 2 -->
-  <section class="gg-sec gg-sec--mid" id="gg-sec4">
+  <section class="gg-sec gg-sec--mid gg-sec--full" id="gg-sec4">
+    <img class="gg-sec-bg" src="img/매력포인트2배경.webp" alt="">
+    <div class="gg-sec-in">
     <div class="gg-head">
       <p class="gg-kicker">갓고을마을 매력포인트<b>2</b></p>
       <h2 class="gg-h2">아이부터 어른까지<span class="gg-br gg-br--mo"></span> <em class="gg-hl">이색 체험이 가득</em></h2>
@@ -671,6 +843,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- 5. 매력포인트 3 -->
@@ -705,9 +878,12 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <ul class="gg-facs">
         <li><span class="gg-ic gg-ic--stay" aria-hidden="true"></span><span class="gg-fac-t">갓고을 숙박</span></li>
         <li><span class="gg-ic gg-ic--futsal" aria-hidden="true"></span><span class="gg-fac-t">풋살장</span></li>
+        <li class="gg-facs-br gg-facs-br--mo" aria-hidden="true"></li>
         <li><span class="gg-ic gg-ic--seminar" aria-hidden="true"></span><span class="gg-fac-t">세미나실</span></li>
         <li><span class="gg-ic gg-ic--jokgu" aria-hidden="true"></span><span class="gg-fac-t">족구장</span></li>
+        <li class="gg-facs-br gg-facs-br--web" aria-hidden="true"></li>
         <li><span class="gg-ic gg-ic--walk" aria-hidden="true"></span><span class="gg-fac-t">산책로</span></li>
+        <li class="gg-facs-br gg-facs-br--mo" aria-hidden="true"></li>
         <li><span class="gg-ic gg-ic--shop" aria-hidden="true"></span><span class="gg-fac-t">돌산갓김치 판매장</span></li>
         <li><span class="gg-ic gg-ic--lawn" aria-hidden="true"></span><span class="gg-fac-t">잔디광장 등</span></li>
       </ul>
@@ -726,13 +902,13 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <li><span class="gg-ok" aria-hidden="true"></span><span class="gg-rec-t">여수의 진짜 향토 문화를 깊이 있게 느끼고 싶은 여행자</span></li>
     </ul>
     <p class="gg-lead gg-outro">11월엔 여수 갓고을마을로 떠나보세요.</p>
-  </section>
-
-  <footer class="gg-sec gg-foot">
     <div class="gg-strip">
       <a class="gg-cta" href="tel:061-644-6100"><span>갓고을마을 예약·문의 <span class="gg-nowrap">061)644-6100</span></span></a>
       <a class="gg-cta gg-cta--line" href="http://www.gatgoeul.com/index.php" target="_blank" rel="noopener">갓고을마을 누리집 바로가기<span class="gg-cta-arrow" aria-hidden="true">→</span></a>
     </div>
+  </section>
+
+  <footer class="gg-sec gg-foot">
     <ul class="gg-tags" aria-label="관련 태그">
       <li>#여수갓고을마을</li>
       <li>#돌산갓김치</li>
@@ -858,6 +1034,126 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 
     play();
   });
+})();
+</script>
+<script>
+/* 히어로 모션 — 뷰포트 진입 시 재생 */
+(function(){
+  var hero=document.querySelector('.contents_div .gtg-hero');
+  if(!hero) return;
+  var cv=hero.querySelector('.gtg-hero__canvas');
+  var ctx=cv.getContext && cv.getContext('2d');
+  if(!ctx) return;
+  var small=document.createElement('canvas'), sctx=small.getContext('2d');
+  var img=hero.querySelector('.gtg-hero__lab--r');
+  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var TEXT_START=450;   /* 메인 텍스트 등장 시점(ms) */
+  var FRAME_MS=70;      /* 픽셀 단계 한 장당 시간(ms) */
+  var LEVELS=[1/48,1/24,1/12,1/6,1]; /* 큰 모자이크 → 선명 */
+  var TOP=.15, BOTTOM=.92;           /* 메인 텍스트 영역(상단 작은 글씨 제외) */
+  var level=-1, started=false;
+
+  function fit(){
+    var d=Math.min(window.devicePixelRatio||1,3);
+    var w=Math.max(1,Math.round(cv.clientWidth*d)), h=Math.max(1,Math.round(cv.clientHeight*d));
+    if(w===cv.width && h===cv.height) return;
+    cv.width=w; cv.height=h;
+    if(level>0) draw(level);
+  }
+
+  function draw(lv){
+    level=lv;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    if(!img.naturalWidth) return;
+    var iw=img.naturalWidth, ih=img.naturalHeight;
+    var sy=Math.round(ih*TOP), sh=Math.round(ih*BOTTOM)-sy;
+    var dy=Math.round(cv.height*TOP), dh=Math.round(cv.height*BOTTOM)-dy;
+    if(lv>=1){
+      ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+      ctx.drawImage(img,0,sy,iw,sh,0,dy,cv.width,dh);
+      return;
+    }
+    var w=Math.max(1,Math.round(cv.width*lv)), h=Math.max(1,Math.round(dh*lv));
+    small.width=w; small.height=h;
+    sctx.clearRect(0,0,w,h);
+    sctx.drawImage(img,0,sy,iw,sh,0,0,w,h);
+    ctx.imageSmoothingEnabled=false;
+    ctx.drawImage(small,0,0,w,h,0,dy,cv.width,dh);
+  }
+
+  function reveal(){
+    if(reduce){ draw(1); return; }
+    (function step(n){
+      draw(LEVELS[n]);
+      if(n+1<LEVELS.length) setTimeout(function(){step(n+1);},FRAME_MS);
+    })(0);
+  }
+
+  function play(){
+    if(started) return;
+    started=true;
+    hero.classList.add('is-play');
+    function go(){ setTimeout(reveal,reduce?0:TEXT_START); }
+    if(img.complete && img.naturalWidth) go(); else img.addEventListener('load',go,{once:true});
+  }
+
+  fit();
+  window.addEventListener('resize',fit);
+
+  if(!('IntersectionObserver' in window)){ play(); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRatio>=0.3) play();
+      if(started) hero.classList.toggle('is-paused',!e.isIntersecting);  /* 화면 밖에서는 둥둥 정지 */
+    });
+  },{threshold:[0,0.3]});
+  io.observe(hero);
+})();
+</script>
+<script>
+/* 스크롤 등장 — 내비 아래 콘텐츠가 화면에 들어올 때 아래에서 위로 */
+(function(){
+  var wrap=document.querySelector('.contents_div .gg-wrap');
+  if(!wrap || !('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel=[
+    '.gg-sec .gg-kicker','.gg-sec .gg-h2','.gg-sec .gg-lead','.gg-bubble','.gg-intro-fig','.gg-qa',
+    '.gg-village-h','.gg-village > p','.gg-row',
+    '.gg-kimchi-pics','.gg-info-item',
+    '.gg-step',
+    '.gg-slider','.gg-group','.gg-fac-h','.gg-facs li:not(.gg-facs-br)',
+    '.gg-recs li','.gg-strip','.gg-tags'
+  ].join(',');
+  var els=wrap.querySelectorAll(sel);
+  if(!els.length) return;
+  for(var i=0;i<els.length;i++) els[i].classList.add('gg-rv');
+  wrap.classList.add('is-rv');
+
+  function cb(entries,obs){
+    var k=0;
+    entries.forEach(function(e){
+      /* 화면에 들어왔거나, 이미 위로 지나간 요소는 바로 표시 */
+      if(!e.isIntersecting && e.boundingClientRect.top>0) return;
+      e.target.style.setProperty('--rv-d',(e.isIntersecting?Math.min(k++,5)*0.1:0)+'s');
+      e.target.classList.add('is-in');
+      obs.unobserve(e.target);
+    });
+  }
+  var io=new IntersectionObserver(cb,{rootMargin:'0px 0px -10% 0px'});
+  /* 푸터 안 요소는 페이지 맨 끝이라 -10% 선을 못 넘음 → 여백 없이 1px만 보여도 표시 */
+  var ioFoot=new IntersectionObserver(cb,{rootMargin:'0px',threshold:0});
+  for(var j=0;j<els.length;j++) (els[j].closest('.gg-foot')?ioFoot:io).observe(els[j]);
+
+  /* 안전장치: 스크롤이 문서 끝에 닿으면 남은 요소 모두 표시 */
+  function atEnd(){
+    var de=document.documentElement;
+    if(window.innerHeight+(window.pageYOffset||de.scrollTop)<de.scrollHeight-4) return;
+    var rest=wrap.querySelectorAll('.gg-rv:not(.is-in)');
+    for(var r=0;r<rest.length;r++){ rest[r].classList.add('is-in'); io.unobserve(rest[r]); ioFoot.unobserve(rest[r]); }
+    window.removeEventListener('scroll',atEnd);
+  }
+  window.addEventListener('scroll',atEnd,{passive:true});
 })();
 </script>
 </div>
